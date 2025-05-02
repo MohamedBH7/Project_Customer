@@ -1,114 +1,133 @@
-# Customer Management System (Frontend)
+# Customer Management System (Backend)
 
-A React-based frontend for managing customer information with Bootstrap styling and API integration.
+Java backend with SparkJava framework and SQLite database for customer management operations.
 
 ## Features
 
-- 📋 View customer list with pagination-ready table
-- ➕ Create new customers via modal form
-- ✏️ Edit customer details with inline validation
-- 🗑️ Delete customers with confirmation
-- 📱 Responsive design powered by React-Bootstrap
-- 🚦 Error handling and user feedback
+- 🗄️ SQLite database with auto-creation
+- 🔄 RESTful API endpoints
+- 🔒 CORS configuration
+- 🛠️ CRUD operations with JDBC
+- 📦 Pre-populated sample data
+
+## Prerequisites
+
+- Java JDK 17+
+- Maven 3.8+
+- SQLite JDBC driver (auto-installed)
 
 ## Installation
 
-### Prerequisites
-- Node.js ≥14.x
-- npm ≥7.x
-
-1. Navigate to project directory:
+1. Navigate to backend directory:
    ```bash
-   cd frontend
-   npm install axios react-bootstrap bootstrap react-router-dom
-Running the Application
-  npm start
-Runs on: http://localhost:3000
-
-Auto-opens in default browser
-
-Requires backend server running on http://localhost:4567
+   cd backend
+2. Install dependencies with Maven:
+      ```bash
+   mvn clean install
 
 
+#Project Structure
+src/main/java/org/example/<br>
+├── WebService.java     # API endpoints<br>
+├── Main.java           # Database initialization<br>
+├── dao/<br>
+│   └── CustomerDAO.java # Database operations<br>
+└── models/<br>
+    ├── Customer.java   # Data model<br>
+    └── ConnectDB.java  # Database connection<br>
+#Running the Application : 
+      mvn package
+#Run the webservice:
+java -cp target/classes:target/dependency/* org.example.WebService
 
-<body>
+Runs on: http://localhost:4567
+
+Database file: backend/mydb.db
+
 <table>
-    <thead>
-        <tr>
-            <th>Method</th>
-            <th>Endpoint</th>
-            <th>Component</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>GET</td>
-            <td>/api/customers</td>
-            <td>CustomerList</td>
-        </tr>
-        <tr>
-            <td>POST</td>
-            <td>/api/customers</td>
-            <td>CreateCustomerModal</td>
-        </tr>
-        <tr>
-            <td>PUT</td>
-            <td>/api/customers/{id}</td>
-            <td>EditCustomerModal</td>
-        </tr>
-        <tr>
-            <td>DELETE</td>
-            <td>/api/customers/{id}</td>
-            <td>DeleteConfirmation</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/customers</td>
+        <td>Get all customers</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/customers/{id}</td>
+        <td>Get single customer</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>/api/customers</td>
+        <td>Create new customer</td>
+    </tr>
+    <tr>
+        <td>PUT</td>
+        <td>/api/customers/{id}</td>
+        <td>Update existing customer</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>/api/customers/{id}</td>
+        <td>Delete customer</td>
+    </tr>
 </table>
-API Documentation:
-    <p>Click <a href="https://documenter.getpostman.com/view/44617995/2sB2j4gBcK">here</a> to View Postman API Docs.</p>
+Complete API Documentation:
+    <p>Click <a href="https://documenter.getpostman.com/view/44617995/2sB2j4gBcK">here</a> to access Complete API Documentation.</p>
 
-#Troubleshooting
+# Troubleshooting : 
 Common Issues
-1. Data Not Loading
+1. Port Conflicts
 
-Verify backend server is running
+Check if port 4567 is available:
+ netstat -ano | findstr :4567
+ 
+#Database Connection Errors
 
-Check browser console for network errors
+Verify mydb.db exists in backend folder
+Check file permissions for database file
 
-Ensure no CORS restrictions (backend must allow requests from http://localhost:3000)
+<table>
+    <tr>
+        <th>Database Information</th>
+    </tr>
+    <tr>
+        <td><strong>Location:</strong> backend/mydb.db</td>
+    </tr>
+    <tr>
+        <td><strong>Initial Data:</strong> 2 sample customers pre-loaded</td>
+    </tr>
+    <tr>
+        <td><strong>Schema:</strong> Auto-created on first run</td>
+    </tr>
+    <tr>
+        <td><strong>JDBC URL:</strong> jdbc:sqlite:mydb.db</td>
+    </tr>
+</table>
 
-2. Form Submission Failures
-
-Required fields: Name, Email, Phone
-
-Email validation: Must follow standard format
-
-Phone validation: Accepts numbers and +()-. characters
 
 # Development Notes
-src/
-├── App.js # Router configuration <br>
-├── components/<br>
-│ └── CustomerList.js # Main component with CRUD operations<br>
-├── App.css # Custom styles<br>
-└── index.js # Root render<br>
-
-# Key Dependencies
-```json
-{
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-bootstrap": "^2.9.2",
-    "axios": "^1.6.2",
-    "react-router-dom": "^6.22.3",
-    "bootstrap": "^5.3.3"
-  }
-}
-
-### Support
-
-For immediate issues, ensure:
-
-- Backend server is running on port 4567
-- No browser extensions are blocking API requests
-- All required fields are populated in forms
+Key Dependencies <br>
+<code>
+&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.sparkjava&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-core&lt;/artifactId&gt;
+    &lt;version&gt;2.9.4&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.xerial&lt;/groupId&gt;
+    &lt;artifactId&gt;sqlite-jdbc&lt;/artifactId&gt;
+    &lt;version&gt;3.44.1.0&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+    &lt;artifactId&gt;gson&lt;/artifactId&gt;
+    &lt;version&gt;2.10.1&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code>
