@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# Customer Management System (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based frontend for managing customer information with Bootstrap styling and API integration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 📋 View customer list with pagination-ready table
+- ➕ Create new customers via modal form
+- ✏️ Edit customer details with inline validation
+- 🗑️ Delete customers with confirmation
+- 📱 Responsive design powered by React-Bootstrap
+- 🚦 Error handling and user feedback
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- Node.js ≥14.x
+- npm ≥7.x
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Navigate to project directory:
+   ```bash
+   cd frontend
+   npm install axios react-bootstrap bootstrap react-router-dom
+Running the Application
+  npm start
+Runs on: http://localhost:3000
 
-### `npm test`
+Auto-opens in default browser
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Requires backend server running on http://localhost:4567
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Endpoint</th>
+            <th>Component</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>/api/customers</td>
+            <td>CustomerList</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/customers</td>
+            <td>CreateCustomerModal</td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>/api/customers/{id}</td>
+            <td>EditCustomerModal</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>/api/customers/{id}</td>
+            <td>DeleteConfirmation</td>
+        </tr>
+    </tbody>
+</table>
+API Documentation:
+    <p>Click <a href="https://documenter.getpostman.com/view/44617995/2sB2j4gBcK">here</a> to View Postman API Docs.</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#Troubleshooting
+Common Issues
+1. Data Not Loading
 
-### `npm run eject`
+Verify backend server is running
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Check browser console for network errors
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ensure no CORS restrictions (backend must allow requests from http://localhost:3000)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Form Submission Failures
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Required fields: Name, Email, Phone
 
-## Learn More
+Email validation: Must follow standard format
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Phone validation: Accepts numbers and +()-. characters
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Development Notes
+src/
+├── App.js # Router configuration <br>
+├── components/<br>
+│ └── CustomerList.js # Main component with CRUD operations<br>
+├── App.css # Custom styles<br>
+└── index.js # Root render<br>
 
-### Code Splitting
+# Key Dependencies
+```json
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-bootstrap": "^2.9.2",
+    "axios": "^1.6.2",
+    "react-router-dom": "^6.22.3",
+    "bootstrap": "^5.3.3"
+  }
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Support
 
-### Analyzing the Bundle Size
+For immediate issues, ensure:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Backend server is running on port 4567
+- No browser extensions are blocking API requests
+- All required fields are populated in forms
